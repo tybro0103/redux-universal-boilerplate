@@ -4,6 +4,12 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import cookieSession from 'cookie-session';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+
+import Html from './components/html';
+import ErrorComp from './components/error';
+import App from '../app/components/app';
 
 let projectRoot = path.join(__dirname, '../');
 let app = express();
@@ -18,11 +24,13 @@ app.use(cookieSession({name: 'redux-universal-boilerplate', secret: 'not-too-sec
 
 // TODO: routes here
 app.get('/', (req, res) => {
-  res.send('hello world');
+  let comp = <Html><App /></Html>;
+  let html = ReactDOMServer.renderToStaticMarkup(comp);
+  res.send(`<!DOCTYPE html>${html}`);
 });
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   let error = new Error('Not Found');
   error.status = 404;
   next(error);
@@ -31,7 +39,9 @@ app.use(function(req, res, next) {
 // error handler
 app.use((error, req, res, next) => {
   console.error(error.stack);
-  res.status(error.status || 500).send(error.message);
+  let comp = <ErrorComp error={error} />;
+  let html = ReactDOMServer.renderToStaticMarkup(comp);
+  res.status(error.status || 500).send(`<!DOCTYPE html>${html}`);
 });
 
 export default app;

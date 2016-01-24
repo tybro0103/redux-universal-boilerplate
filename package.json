@@ -21,6 +21,8 @@
     "cookie-parser": "^1.4.1",
     "cookie-session": "^1.2.0",
     "express": "^4.13.4",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6"
   }
 }
