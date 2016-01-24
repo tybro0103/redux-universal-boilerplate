@@ -1,3 +1,4 @@
 {
-  "ext": "js json jsx"
+  "ext": "js json jsx",
+  "ignore": ["tmp/*"]
 }

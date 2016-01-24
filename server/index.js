@@ -8,6 +8,7 @@ import React from 'react';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router'
 
+import { serveClientJs } from './dev-middleware';
 import appRoutes from '../app/routes';
 import Html from './components/html';
 import ErrorComp from './components/error';
@@ -22,6 +23,11 @@ app.use(cookieParser());
 app.use(compression());
 app.use(express.static(path.join(projectRoot, 'public')));
 app.use(cookieSession({name: 'redux-universal-boilerplate', secret: 'not-too-secret'}));
+
+// dev assets
+if (app.settings.env === 'development') {
+  app.get('/app.js', serveClientJs);
+}
 
 // app routes
 app.get('*', (req, res, next) => {

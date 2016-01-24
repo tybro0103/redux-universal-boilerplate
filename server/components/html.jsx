@@ -21,6 +21,7 @@ export default class Html extends Component {
         </head>
         <body>
           {this.props.children}
+          <script src="/app.js" />
         </body>
       </html>
     );
