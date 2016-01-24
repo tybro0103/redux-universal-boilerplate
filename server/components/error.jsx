@@ -20,7 +20,7 @@ export default class ErrorComp extends Component {
     return (
       <div className="error">
         <h1>Error - {error.message}</h1>
-        <textarea value={dump} style={{width: '100%', height: 600}} />
+        <textarea defaultValue={dump} style={{width: '100%', height: 600}} />
       </div>
     );
   }

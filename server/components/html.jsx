@@ -16,7 +16,7 @@ export default class Html extends Component {
     return (
       <html>
         <head>
-          <meta charset="UTF-8" />
+          <meta charSet="UTF-8" />
           <title>Redux Universal Boilerplate</title>
         </head>
         <body>
