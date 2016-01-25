@@ -17,7 +17,7 @@ export default class App extends Component {
     return (
       <div className="app">
         <h1>Redux Universal Boilerplate</h1>
-        <ul>
+        <ul className="menu">
           <li><IndexLink to="/">Home</IndexLink></li>
           <li><Link to="/about">About</Link></li>
         </ul>

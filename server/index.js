@@ -8,7 +8,7 @@ import React from 'react';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router'
 
-import { serveClientJs } from './dev-middleware';
+import { serveClientJs, serveCss } from './dev-middleware';
 import appRoutes from '../app/routes';
 import Html from './components/html';
 import ErrorComp from './components/error';
@@ -27,6 +27,7 @@ app.use(cookieSession({name: 'redux-universal-boilerplate', secret: 'not-too-sec
 // dev assets
 if (app.settings.env === 'development') {
   app.get('/app.js', serveClientJs);
+  app.get('/app.css', serveCss);
 }
 
 // app routes

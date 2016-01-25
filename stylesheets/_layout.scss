@@ -1,0 +1,32 @@
+body {
+  font-size: 15px;
+  font-family: $font-main;
+  margin: 0;
+  background: #E00;
+}
+
+.app {
+  width: 1000px;
+  margin: 0 auto;
+  background: #FFF;
+  overflow: hidden;
+  padding: 0 20px;
+  min-height: 1200px;
+}
+
+.menu {
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+
+  li {
+    float: left;
+
+    a {
+      display: block;
+      border: 1px solid #DDD;
+      padding: 10px;
+      margin-right: 10px;
+    }
+  }
+}

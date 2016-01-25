@@ -1,6 +1,8 @@
 import path from 'path';
 import browserify  from 'browserify';
 import browserifyInc  from 'browserify-incremental';
+import sassMiddleware from 'node-sass-middleware';
+import bourbon from 'node-bourbon';
 
 let projectRoot = path.join(__dirname, '../');
 
@@ -31,4 +33,33 @@ export function serveClientJs(req, res) {
   // send the browserified output as response
   res.type('application/javascript');
   b.bundle().pipe(res);
+};
+
+
+
+/*
+ *  SERVE CSS
+ *  uses node-sass-middleware to compile sass and serve on demand
+ *  it's intended to be used as a middleware that matches the url to an actual sass file
+ *  this allows it to be used more route-like: app.get('/app.css', serveCss)
+ */
+
+// memoized sass middleware getter
+let memSassMiddleware;
+let getSassMiddleware = function() {
+  if (memSassMiddleware == null) {
+    let sassOpts = {
+      src: path.join(projectRoot, 'stylesheets'),
+      includePaths: bourbon.includePaths,
+      response: true,
+      force: true
+    };
+    memSassMiddleware = sassMiddleware(sassOpts);
+  }
+  return memSassMiddleware;
+};
+
+export function serveCss(req, res, next) {
+  let hackedReq = {...req, url: '/app.css'}; // forces sassMiddleware to use app.scss, despite the real url
+  return getSassMiddleware()(hackedReq, res, next);
 };
