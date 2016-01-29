@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class About extends Component {
+export default class PlanetsIndex extends Component {
 
   /*
    * RENDERING
@@ -9,7 +9,7 @@ export default class About extends Component {
   render() {
     return (
       <div className="home">
-        <h2>About</h2>
+        <h2>Planets Index</h2>
       </div>
     );
   }

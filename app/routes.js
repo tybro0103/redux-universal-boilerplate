@@ -3,11 +3,13 @@ import { Route, IndexRoute } from 'react-router';
 
 import App from './components/app';
 import Home from './components/home';
-import About from './components/about';
+import People from './components/people/';
+import Planets from './components/planets/';
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Home}/>
-    <Route path="about" component={About} />
+    <Route path="/people" component={People} />
+    <Route path="/planets" component={Planets} />
   </Route>
 );

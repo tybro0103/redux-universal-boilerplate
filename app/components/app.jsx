@@ -19,7 +19,8 @@ export default class App extends Component {
         <h1>Redux Universal Boilerplate</h1>
         <ul className="menu">
           <li><IndexLink to="/">Home</IndexLink></li>
-          <li><Link to="/about">About</Link></li>
+          <li><Link to="/people">People</Link></li>
+          <li><Link to="/planets">Planets</Link></li>
         </ul>
         <div className="route-component">
           {this.props.children}
