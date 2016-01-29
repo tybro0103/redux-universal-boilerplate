@@ -9,6 +9,7 @@ import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router'
 
 import { serveClientJs, serveCss } from './dev-middleware';
+import apiRouter from './api';
 import appRoutes from '../app/routes';
 import Html from './components/html';
 import ErrorComp from './components/error';
@@ -29,6 +30,9 @@ if (app.settings.env === 'development') {
   app.get('/app.js', serveClientJs);
   app.get('/app.css', serveCss);
 }
+
+// routers
+app.use('/api', apiRouter);
 
 // app routes
 app.get('*', (req, res, next) => {
