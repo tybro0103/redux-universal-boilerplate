@@ -35,11 +35,11 @@ app.get('*', (req, res, next) => {
   // use react router to match current location against app routes
   match({routes: appRoutes, location: req.url}, (error, redirect, renderProps) => {
     if (error) return next(error);
-    if (redirect) return res.redirect(302, `${redirect.pathname}${redirect.search}`);
+    if (redirect) return res.redirect(`${redirect.pathname}${redirect.search}`);
     if (renderProps) {
       let comp = <Html><RouterContext {...renderProps} /></Html>;
-      let html = renderToString(comp);
-      return res.send(`<!DOCTYPE html>${html}`);
+      let html = renderToStaticMarkup(comp);
+      return res.send(`<!DOCTYPE html>\n${html}`);
     }
     next();
   });
@@ -57,7 +57,7 @@ app.use((error, req, res, next) => {
   console.error(error.stack);
   let comp = <ErrorComp error={error} />;
   let html = renderToStaticMarkup(comp);
-  res.status(error.status || 500).send(`<!DOCTYPE html>${html}`);
+  res.status(error.status || 500).send(`<!DOCTYPE html>\n${html}`);
 });
 
 export default app;
