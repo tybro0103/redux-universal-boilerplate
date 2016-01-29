@@ -21,7 +21,9 @@ export default class Html extends Component {
           <link rel="stylesheet" href="/app.css" />
         </head>
         <body>
-          {this.props.children}
+          <div id="app-main">
+            {this.props.children}
+          </div>
           <script src="/app.js" />
         </body>
       </html>
