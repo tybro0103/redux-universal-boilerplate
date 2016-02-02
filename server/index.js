@@ -7,10 +7,12 @@ import cookieSession from 'cookie-session';
 import React from 'react';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router'
+import { Provider } from 'react-redux'
 
 import { serveClientJs, serveCss } from './dev-middleware';
 import apiRouter from './api';
 import appRoutes from '../app/routes';
+import store from '../app/store';
 import Html from './components/html';
 import ErrorComp from './components/error';
 
@@ -41,7 +43,13 @@ app.get('*', (req, res, next) => {
     if (error) return next(error);
     if (redirect) return res.redirect(`${redirect.pathname}${redirect.search}`);
     if (renderProps) {
-      let comp = <Html><RouterContext {...renderProps} /></Html>;
+      let comp = (
+        <Html>
+          <Provider store={store}>
+            <RouterContext {...renderProps} />
+          </Provider>
+        </Html>
+      );
       let html = renderToStaticMarkup(comp);
       return res.send(`<!DOCTYPE html>\n${html}`);
     }
