@@ -8,6 +8,9 @@ import store from '../app/store';
 
 
 
+global.__IS_CLIENT__ = true;
+global.__IS_SERVER__ = false;
+
 let {pathname, search, hash} = window.location;
 let location = `${pathname}${search}${hash}`;
 let appMainEl = document.getElementById('app-main');

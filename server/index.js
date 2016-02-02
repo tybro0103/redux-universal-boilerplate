@@ -16,6 +16,11 @@ import store from '../app/store';
 import Html from './components/html';
 import ErrorComp from './components/error';
 
+
+
+global.__IS_CLIENT__ = false;
+global.__IS_SERVER__ = true;
+
 let projectRoot = path.join(__dirname, '../');
 let app = express();
 
