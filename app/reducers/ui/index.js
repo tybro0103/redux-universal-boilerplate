@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux';
 
-import ui from './ui';
-import entities from './entities';
+import planets from './planets';
 
 
 
 export default combineReducers({
-  ui,
-  entities
+  planets
 });
