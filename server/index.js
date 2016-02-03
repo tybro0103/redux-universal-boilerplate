@@ -9,6 +9,7 @@ import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router'
 import { Provider } from 'react-redux'
 
+import './globals';
 import { serveClientJs, serveCss } from './dev-middleware';
 import apiRouter from './api';
 import appRoutes from '../app/routes';
@@ -17,9 +18,6 @@ import Html from './components/html';
 import ErrorComp from './components/error';
 
 
-
-global.__IS_CLIENT__ = false;
-global.__IS_SERVER__ = true;
 
 let projectRoot = path.join(__dirname, '../');
 let app = express();
