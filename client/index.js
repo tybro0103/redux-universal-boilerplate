@@ -4,11 +4,13 @@ import { Router, browserHistory, match } from 'react-router';
 import { Provider } from 'react-redux';
 
 import './globals';
-import routes from '../app/routes';
-import store from '../app/store';
+import configureRoutes from '../app/configure-routes';
+import configureStore from '../app/configure-store';
 
 
 
+let store = configureStore();
+let routes = configureRoutes(store);
 let {pathname, search, hash} = window.location;
 let location = `${pathname}${search}${hash}`;
 let appRootEl = document.getElementById('app-root');

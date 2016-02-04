@@ -12,8 +12,8 @@ import { Provider } from 'react-redux'
 import './globals';
 import { serveClientJs, serveCss } from './dev-middleware';
 import apiRouter from './api';
-import appRoutes from '../app/routes';
-import store from '../app/store';
+import configureRoutes from '../app/configure-routes';
+import configureStore from '../app/configure-store';
 import Html from './components/html';
 import ErrorComp from './components/error';
 
@@ -41,8 +41,10 @@ app.use('/api', apiRouter);
 
 // app routes
 app.get('*', (req, res, next) => {
+  let store = configureStore();
+  let routes = configureRoutes(store);
   // use react router to match current location against app routes
-  match({routes: appRoutes, location: req.url}, (error, redirect, renderProps) => {
+  match({routes, location: req.url}, (error, redirect, renderProps) => {
     if (error) return next(error);
     if (redirect) return res.redirect(`${redirect.pathname}${redirect.search}`);
     if (renderProps) {
