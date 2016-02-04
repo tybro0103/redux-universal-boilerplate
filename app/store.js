@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import promiseMiddleware from 'redux-promise-middleware';
 import createLogger from 'redux-logger';
 import rootReducer from './reducers';
@@ -7,13 +7,12 @@ let logger = createLogger({logger: console, collapsed: () => true});
 
 let initialState = {};
 
-let store = createStore(
-  rootReducer,
-  initialState,
+let store = createStore(rootReducer, initialState, compose(
   applyMiddleware(
-    promiseMiddleware(),
-    logger
-  )
-);
+    promiseMiddleware()
+    // logger
+  ),
+  typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
+));
 
 export default store;
