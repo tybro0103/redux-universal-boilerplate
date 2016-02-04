@@ -1,8 +1,8 @@
 import planets from '../api-wrappers/planets';
 
-export function loadPlanets() {
+export function loadPagePlanetsIndex() {
   return {
-    type: 'PLANETS_LOAD',
+    type: 'LOAD_PAGE_PLANETS_INDEX',
     payload: { promise: planets.load() }
   };
 };

@@ -1,17 +1,17 @@
 
 let initialState = {
   list: [],
-  listLoadedAt: null
+  isLoaded: false
 };
 
 export default function(state=initialState, action) {
   switch(action.type) {
 
-    case 'PLANETS_LOAD_FULFILLED':
+    case 'LOAD_PAGE_PLANETS_INDEX_FULFILLED':
       return {
         ...state,
         list: action.payload.map(planet => planet.id),
-        listLoadedAt: (new Date()).getTime()
+        isLoaded: true
       };
 
     default:
