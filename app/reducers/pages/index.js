@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import planets from './planets';
+import planetsIndex from './planetsIndex';
 
 
 
 export default combineReducers({
-  planets
+  planetsIndex
 });

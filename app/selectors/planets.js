@@ -2,13 +2,25 @@ import { createSelector } from 'reselect'
 
 
 
-export const slctPlanetEntities = state => state.entities.planets;
-export const slctPlanetIndex = state => state.ui.planets.index;
+let SLX = {
+  entities: state => state.entities.planets
+};
 
-export const slctIndexPlanets = createSelector(
-  slctPlanetEntities,
-  slctPlanetIndex,
-  (entities, index) => {
-    return index.map(id => entities[id]);
+
+
+/*
+ *  PAGE - PLANETS INDEX
+ */
+
+SLX.planetsIndex = state => state.pages.planetsIndex;
+
+SLX.planetsIndex.planets = createSelector(
+  [SLX.entities, SLX.planetsIndex],
+  (entities, page) => {
+    return page.list.map(id => entities[id]);
   }
 );
+
+
+
+export default SLX;

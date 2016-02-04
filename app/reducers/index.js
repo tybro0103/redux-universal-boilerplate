@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
-import ui from './ui';
-import entities from './entities';
+import pages from './pages/';
+import entities from './entities/';
 
 
 
 export default combineReducers({
-  ui,
+  pages,
   entities
 });
