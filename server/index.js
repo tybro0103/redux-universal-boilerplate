@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import cookieSession from 'cookie-session';
 import React from 'react';
-import { renderToStaticMarkup, renderToString } from 'react-dom/server';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { match, RouterContext } from 'react-router'
 import { Provider } from 'react-redux'
 
@@ -47,7 +47,7 @@ app.get('*', (req, res, next) => {
     if (redirect) return res.redirect(`${redirect.pathname}${redirect.search}`);
     if (renderProps) {
       let comp = (
-        <Html>
+        <Html store={store}>
           <Provider store={store}>
             <RouterContext {...renderProps} />
           </Provider>

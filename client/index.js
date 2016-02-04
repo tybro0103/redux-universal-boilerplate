@@ -11,7 +11,7 @@ import store from '../app/store';
 
 let {pathname, search, hash} = window.location;
 let location = `${pathname}${search}${hash}`;
-let appMainEl = document.getElementById('app-main');
+let appRootEl = document.getElementById('app-root');
 
 match({routes, location}, (error, redirect, renderProps) => {
   // TODO: handle error and redirect
@@ -20,5 +20,5 @@ match({routes, location}, (error, redirect, renderProps) => {
       <Router {...renderProps} history={browserHistory} />
     </Provider>
   );
-  render(component, appMainEl);
+  render(component, appRootEl);
 });

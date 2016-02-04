@@ -1,9 +1,12 @@
 import React, { Component, PropTypes } from 'react';
+import { renderToString } from 'react-dom/server';
+import serialize from 'serialize-javascript';
 
 export default class Html extends Component {
 
   static propTypes = {
-    children: PropTypes.element.isRequired
+    children: PropTypes.element.isRequired,
+    store: PropTypes.object.isRequired
   };
 
 
@@ -13,6 +16,10 @@ export default class Html extends Component {
    */
 
   render() {
+    let {children, store} = this.props;
+    let __html = renderToString(children);
+    let __data = serialize(store.getState());
+
     return (
       <html>
         <head>
@@ -21,9 +28,8 @@ export default class Html extends Component {
           <link rel="stylesheet" href="/app.css" />
         </head>
         <body>
-          <div id="app-main">
-            {this.props.children}
-          </div>
+          <div id="app-root" dangerouslySetInnerHTML={{ __html }} />
+          <script dangerouslySetInnerHTML={{__html: `window.__data=${__data};`}} />
           <script src="/app.js" />
         </body>
       </html>
