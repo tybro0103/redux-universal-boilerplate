@@ -3,6 +3,7 @@ import _ from 'lodash';
 import { Route, IndexRoute } from 'react-router';
 
 import * as planetsAx from './actions/planets';
+import * as peopleAx from './actions/people';
 import App from './components/app';
 import Home from './components/home';
 import People from './components/people/';
@@ -42,8 +43,13 @@ export default (store) => {
   };
 
   let onPlanetShowEnter = (nextState, replaceState, done) => {
+    // TODO handle 404s
     let planetId = nextState.params.id;
     dispatchAndCallback(planetsAx.loadPageShow.bind(null, planetId), done);
+  };
+
+  let onPeopleIndexEnter = (nextState, replaceState, done) => {
+    dispatchAndCallback(peopleAx.loadPageIndex, done);
   };
 
 
@@ -55,7 +61,7 @@ export default (store) => {
   return (
     <Route path="/" component={App}>
       <IndexRoute component={Home}/>
-      <Route path="/people" component={People} />
+      <Route path="/people" component={People} onEnter={onPeopleIndexEnter} />
       <Route path="/planets" component={PlanetsIndex} onEnter={onPlanetIndexEnter} />
       <Route path="/planets/:id" component={PlanetsShow} onEnter={onPlanetShowEnter} />
     </Route>

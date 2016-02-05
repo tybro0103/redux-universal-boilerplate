@@ -19,8 +19,10 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  swapi.get(`/people/${req.params.id}`)
+  let persontId = req.params.id;
+  swapi.get(`/people/${persontId}`)
     .then(response => response.data)
+    .then(person => ({...person, id: persontId}))
     .then(person => res.send(person))
     .catch(error => res.status(500).send(error));
 });
