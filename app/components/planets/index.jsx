@@ -13,7 +13,7 @@ class PlanetsIndex extends Component {
     let {planets} = this.props;
 
     return (
-      <div className="home">
+      <div>
         <h2>Planets Index</h2>
         <ul>
           {planets.map(planet => (
