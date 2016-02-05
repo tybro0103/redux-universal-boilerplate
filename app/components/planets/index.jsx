@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+import { Link } from 'react-router';
 
 import SLX from '../../selectors/planets';
 
@@ -15,9 +16,11 @@ class PlanetsIndex extends Component {
       <div className="home">
         <h2>Planets Index</h2>
         <ul>
-          {planets.map(planet => <li key={planet.id}>
-            {planet.name}
-          </li>)}
+          {planets.map(planet => (
+            <li key={planet.id}>
+              <Link to={`/planets/${planet.id}`}>{planet.name}</Link>
+            </li>
+          ))}
         </ul>
       </div>
     );

@@ -23,4 +23,19 @@ SLX.planetsIndex.planets = createSelector(
 
 
 
+/*
+ *  PAGE - PLANETS SHOW
+ */
+
+SLX.planetsShow = state => state.pages.planetsShow;
+
+SLX.planetsShow.planet = createSelector(
+  [SLX.entities, SLX.planetsShow],
+  (entities, page) => {
+    return entities[page.planetId];
+  }
+);
+
+
+
 export default SLX;

@@ -7,4 +7,9 @@ export default {
       .then(res => res.data);
   },
 
+  find: (planetId) => {
+    return apiClient.get(`/planets/${planetId}`)
+      .then(res => res.data);
+  }
+
 };

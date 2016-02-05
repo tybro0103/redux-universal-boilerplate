@@ -2,11 +2,14 @@ import React from 'react';
 import _ from 'lodash';
 import { Route, IndexRoute } from 'react-router';
 
-import * as planetAx from './actions/planets';
+import * as planetsAx from './actions/planets';
 import App from './components/app';
 import Home from './components/home';
 import People from './components/people/';
-import Planets from './components/planets/';
+import PlanetsIndex from './components/planets/index';
+import PlanetsShow from './components/planets/show';
+
+
 
 export default (store) => {
 
@@ -33,9 +36,14 @@ export default (store) => {
    *  HOOKS
    */
 
-  let onPlanetsEnter = (nextState, replaceState, done) => {
+  let onPlanetIndexEnter = (nextState, replaceState, done) => {
     if (isPageLoaded('planetsIndex')) return done();
-    dispatchAndCallback(planetAx.loadPageIndex, done);
+    dispatchAndCallback(planetsAx.loadPageIndex, done);
+  };
+
+  let onPlanetShowEnter = (nextState, replaceState, done) => {
+    let planetId = nextState.params.id;
+    dispatchAndCallback(planetsAx.loadPageShow.bind(null, planetId), done);
   };
 
 
@@ -48,7 +56,8 @@ export default (store) => {
     <Route path="/" component={App}>
       <IndexRoute component={Home}/>
       <Route path="/people" component={People} />
-      <Route path="/planets" component={Planets} onEnter={onPlanetsEnter} />
+      <Route path="/planets" component={PlanetsIndex} onEnter={onPlanetIndexEnter} />
+      <Route path="/planets/:id" component={PlanetsShow} onEnter={onPlanetShowEnter} />
     </Route>
   );
 

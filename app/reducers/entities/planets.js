@@ -11,6 +11,12 @@ export default function(state={}, action) {
         ...arrayToIdObjectPairs(action.payload)
       };
 
+    case 'LOAD_PAGE_PLANETS_SHOW_FULFILLED':
+      return {
+        ...state,
+        [action.payload.id]: action.payload
+      };
+
     default:
       return state;
 
