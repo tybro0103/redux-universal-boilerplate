@@ -6,7 +6,8 @@ import { Provider } from 'react-redux';
 import './globals';
 import configureRoutes from '../app/configure-routes';
 import configureStore from '../app/configure-store';
-
+import apiClient from '../app/api-client';
+import planetsSlx from '../app/selectors/planets';
 
 
 let store = configureStore();
@@ -16,7 +17,7 @@ let location = `${pathname}${search}${hash}`;
 let appRootEl = document.getElementById('app-root');
 
 match({routes, location}, (error, redirect, renderProps) => {
-  // TODO: handle error and redirect
+  // TODO: handle error and redirect?
   var component = (
     <Provider store={store}>
       <Router {...renderProps} history={browserHistory} />
@@ -24,3 +25,11 @@ match({routes, location}, (error, redirect, renderProps) => {
   );
   render(component, appRootEl);
 });
+
+// TODO: only allow this in dev
+window.App = {
+  apiClient,
+  store,
+  routes,
+  planetsSlx
+};
