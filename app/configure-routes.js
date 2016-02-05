@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import { Route, IndexRoute } from 'react-router';
 
-import { loadPagePlanetsIndex } from './actions/planets';
+import * as planetAx from './actions/planets';
 import App from './components/app';
 import Home from './components/home';
 import People from './components/people/';
@@ -35,7 +35,7 @@ export default (store) => {
 
   let onPlanetsEnter = (nextState, replaceState, done) => {
     if (isPageLoaded('planetsIndex')) return done();
-    dispatchAndCallback(loadPagePlanetsIndex, done);
+    dispatchAndCallback(planetAx.loadPageIndex, done);
   };
 
 
