@@ -6,3 +6,10 @@ export function loadPageIndex() {
     payload: {promise: peopleApi.load()}
   };
 };
+
+export function selectPerson(personId) {
+  return {
+    type: 'PEOPLE_INDEX_SELECT_PERSON',
+    personId
+  }
+};

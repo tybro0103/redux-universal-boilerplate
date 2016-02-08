@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { Link } from 'react-router';
 
-import SLX from '../../selectors/planets';
+import * as pageSlx from '../../selectors/pages/planets-index';
 
 
 
@@ -31,7 +31,7 @@ class PlanetsIndex extends Component {
 
 
 let selector = createSelector(
-  SLX.planetsIndex.planets,
+  pageSlx.planets,
   planets => ({planets})
 );
 

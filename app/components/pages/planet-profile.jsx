@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { map } from 'lodash';
 
-import planetsSLX from '../../selectors/planets';
+import * as pageSlx from '../../selectors/pages/planet-profile';
 
 
 
@@ -30,7 +30,7 @@ class PlanetsShow extends Component {
 
 
 let selector = createSelector(
-  planetsSLX.planetsShow.planet,
+  pageSlx.planet,
   planet => ({planet})
 );
 

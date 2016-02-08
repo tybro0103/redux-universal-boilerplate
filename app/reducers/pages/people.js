@@ -1,6 +1,7 @@
 
 let initialState = {
-  personIds: []
+  personIds: [],
+  selectedPersonId: null
 };
 
 export default function(state=initialState, action) {
@@ -10,6 +11,12 @@ export default function(state=initialState, action) {
       return {
         ...state,
         personIds: action.payload.map(person => person.id)
+      };
+
+    case 'PEOPLE_INDEX_SELECT_PERSON':
+      return {
+        ...state,
+        selectedPersonId: action.personId
       };
 
     default:

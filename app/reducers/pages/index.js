@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 
+import people from './people';
 import planetsIndex from './planets-index';
-import planetsShow from './planets-show';
-import peopleIndex from './people-index';
+import planetProfile from './planet-profile';
 
 
 
 export default combineReducers({
+  people,
   planetsIndex,
-  planetsShow,
-  peopleIndex
+  planetProfile
 });

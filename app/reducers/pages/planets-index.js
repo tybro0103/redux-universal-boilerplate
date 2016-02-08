@@ -1,6 +1,6 @@
 
 let initialState = {
-  list: [],
+  planetIds: [],
   isLoaded: false
 };
 
@@ -10,7 +10,7 @@ export default function(state=initialState, action) {
     case 'LOAD_PAGE_PLANETS_INDEX_FULFILLED':
       return {
         ...state,
-        list: action.payload.map(planet => planet.id),
+        planetIds: action.payload.map(planet => planet.id),
         isLoaded: true
       };
 
