@@ -6,8 +6,16 @@ import * as pageSlx from '../../selectors/pages/people';
 import * as peopleAx from '../../actions/people';
 
 
+let selector = createSelector(
+  pageSlx.people,
+  pageSlx.selectedPerson,
+  (people, selectedPerson) => (
+    {people, selectedPerson}
+  )
+);
 
-class PeopleIndex extends Component {
+@connect(selector)
+export default class PeopleIndex extends Component {
 
   /*
    *  UI EVENTS
@@ -45,15 +53,3 @@ class PeopleIndex extends Component {
   }
 
 }
-
-
-
-let selector = createSelector(
-  pageSlx.people,
-  pageSlx.selectedPerson,
-  (people, selectedPerson) => (
-    {people, selectedPerson}
-  )
-);
-
-export default connect(selector)(PeopleIndex);
