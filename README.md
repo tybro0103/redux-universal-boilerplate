@@ -31,6 +31,15 @@ open http://localhost:3069/
 
 
 
+## Roadmap
+
+  + better actions structure
+  + better routing
+  + authentication
+  + explore react router alernatives
+
+
+
 ## Organization, Conventions, and Styles
 
 ### The store
@@ -176,7 +185,7 @@ export default connect(selector)(PlanetProfile);
 
 ### Actions
 
-pending...
+TBD...
 
 
 
@@ -188,6 +197,6 @@ pending...
 
 ### Routers
 
-pending...
+TBD...
 
 
