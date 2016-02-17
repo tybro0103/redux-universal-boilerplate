@@ -7,7 +7,6 @@ import './globals';
 import configureRoutes from '../app/configure-routes';
 import configureStore from '../app/configure-store';
 import apiClient from '../app/api-client';
-import planetsSlx from '../app/selectors/planets';
 
 
 let store = configureStore();
@@ -30,6 +29,5 @@ match({routes, location}, (error, redirect, renderProps) => {
 window.App = {
   apiClient,
   store,
-  routes,
-  planetsSlx
+  routes
 };

@@ -6,8 +6,13 @@ import { Link } from 'react-router';
 import * as pageSlx from '../../selectors/pages/planets-index';
 
 
+let selector = createSelector(
+  pageSlx.planets,
+  planets => ({planets})
+);
 
-class PlanetsIndex extends Component {
+@connect(selector)
+export default class PlanetsIndex extends Component {
 
   render() {
     let {planets} = this.props;
@@ -27,12 +32,3 @@ class PlanetsIndex extends Component {
   }
 
 }
-
-
-
-let selector = createSelector(
-  pageSlx.planets,
-  planets => ({planets})
-);
-
-export default connect(selector)(PlanetsIndex);
