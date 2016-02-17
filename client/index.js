@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, browserHistory, match } from 'react-router';
+import { Router, browserHistory as history, match } from 'react-router';
 import { Provider } from 'react-redux';
 
 import './globals';
@@ -9,24 +9,23 @@ import configureStore from '../app/configure-store';
 import apiClient from '../app/api-client';
 
 
+
 let store = configureStore();
 let routes = configureRoutes(store);
-let {pathname, search, hash} = window.location;
-let location = `${pathname}${search}${hash}`;
 let appRootEl = document.getElementById('app-root');
 
-match({routes, location}, (error, redirect, renderProps) => {
+match({routes, history}, (error, redirect, renderProps) => {
   // TODO: handle error and redirect?
-  var component = (
+  let component = (
     <Provider store={store}>
-      <Router {...renderProps} history={browserHistory} />
+      <Router {...renderProps} />
     </Provider>
   );
   render(component, appRootEl);
 });
 
 // TODO: only allow this in dev
-window.App = {
+window.DEV = {
   apiClient,
   store,
   routes
