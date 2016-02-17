@@ -1,9 +1,12 @@
+**WIP Here!**
+
 ## Redux Universal Boilerplate
 
 Main goals of this project:
 
   + Serve as boilerplate for universal apps using React+Redux.
   + Develop some organization and conventions for such an app - particularly with the Redux parts and the tools involved.
+  + Reduce the convoluted-ness that is typical of of the stack. Keep modules small and single-purpose. Keep the code easy to follow.
 
 This project does _not_ include Webpack, HMR, or inline styles.
 
