@@ -10,6 +10,11 @@ import apiClient from '../app/api-client';
 
 
 
+import router from '../app/router';
+router.startRouting(history);
+
+
+
 let store = configureStore();
 let routes = configureRoutes(store);
 let appRootEl = document.getElementById('app-root');
@@ -28,5 +33,7 @@ match({routes, history}, (error, redirect, renderProps) => {
 window.DEV = {
   apiClient,
   store,
-  routes
+  routes,
+  history,
+  router
 };

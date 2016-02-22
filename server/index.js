@@ -40,7 +40,11 @@ if (app.settings.env === 'development') {
 app.use('/api', apiRouter);
 
 // app routes
+import router from '../app/router';
 app.get('*', (req, res, next) => {
+  router.route(req.url);
+
+
   let store = configureStore();
   let routes = configureRoutes(store);
   // use react router to match current location against app routes
