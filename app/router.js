@@ -1,32 +1,34 @@
 import Router from '../lib/router';
 
+export default function buildRouter(store) {
 
+  const router = new Router();
+  router.setContext({store});
 
-const router = new Router();
+  router.use('/', (done, location, context) => {
+    console.log('~~~~~~~~~ context', context);
+    console.log('~~~~~~~~~ location', location);
+    done.ok({page: 'home'});
+  });
 
-router.use('/people/:userId', (a) => {
-  console.log('---------- ROUTE MATCH -------------');
-  console.log('/people/:userId', a);
-});
+  router.use('/people', (done, location, context) => {
+    console.log('~~~~~~~~~ context', context);
+    console.log('~~~~~~~~~ location', location);
+    done.redirect('/home');
+  });
 
-router.use('/people', (a) => {
-  console.log('---------- ROUTE MATCH -------------');
-  console.log('/people', a);
-});
+  router.use('/planets/:planetId', (done, location, context) => {
+    console.log('~~~~~~~~~ context', context);
+    console.log('~~~~~~~~~ location', location);
+    done.error({message: 'whoops'});
+  });
 
-router.use('/planets/:planetId', (a) => {
-  console.log('---------- ROUTE MATCH -------------');
-  console.log('/planets/:planetId', a);
-});
+  router.use('/planets', (done, location, context) => {
+    console.log('~~~~~~~~~ context', context);
+    console.log('~~~~~~~~~ location', location);
+    done.ok({page: 'planets-index'});
+  });
 
-router.use('/planets', (a) => {
-  console.log('---------- ROUTE MATCH -------------');
-  console.log('/planets', a);
-});
+  return router;
 
-router.use('/foo/:nom/bar', (a) => {
-  console.log('---------- ROUTE MATCH -------------');
-  console.log('/foo/:nom/bar', a);
-});
-
-export default router;
+};

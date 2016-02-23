@@ -10,12 +10,27 @@ import apiClient from '../app/api-client';
 
 
 
-import router from '../app/router';
-router.startRouting(history);
 
 
+
+import buildRouter from '../app/router';
 
 let store = configureStore();
+let router = buildRouter(store);
+
+router.startRouting(history, (location, redirect, error) => {
+  if (location) return console.log('===== DONE OK', location);
+  if (redirect) return console.log('===== DONE REDIRECT', redirect);
+  if (error) return console.log('===== DONE ERROR', error);
+  console.log('===== DONE NOT FOUND');
+});
+
+
+
+
+
+
+// let store = configureStore();
 let routes = configureRoutes(store);
 let appRootEl = document.getElementById('app-root');
 

@@ -40,12 +40,19 @@ if (app.settings.env === 'development') {
 app.use('/api', apiRouter);
 
 // app routes
-import router from '../app/router';
+import buildRouter from '../app/router';
 app.get('*', (req, res, next) => {
-  router.route(req.url);
-
-
   let store = configureStore();
+  let router = buildRouter(store);
+  router.route(req.url, (location, redirect, error) => {
+    if (location) return console.log('===== DONE OK', location);
+    if (redirect) return console.log('===== DONE REDIRECT', redirect);
+    if (error) return console.log('===== DONE ERROR', error);
+    console.log('===== DONE NOT FOUND');
+  });
+
+
+  // let store = configureStore();
   let routes = configureRoutes(store);
   // use react router to match current location against app routes
   match({routes, location: req.url}, (error, redirect, renderProps) => {
