@@ -1,4 +1,5 @@
-import Router from '../lib/router';
+import { Router } from 'pouter';
+// import { Router } from '../../pouter/src/';
 
 export default function buildRouter(store) {
 

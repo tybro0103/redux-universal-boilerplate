@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { Link, IndexLink } from 'react-router';
 
 export default class App extends Component {
 
@@ -18,7 +17,7 @@ export default class App extends Component {
       <div className="app">
         <h1>Redux Universal Boilerplate</h1>
         <ul className="menu">
-          <li><IndexLink to="/">Home</IndexLink></li>
+          <li><Link to="/">Home</Link></li>
           <li><Link to="/people">People</Link></li>
           <li><Link to="/planets">Planets</Link></li>
         </ul>
@@ -29,4 +28,16 @@ export default class App extends Component {
     );
   }
 
+}
+
+
+
+// TODO: make one of these that works with history
+class Link extends Component {
+  render() {
+    const {to, children} = this.props;
+    return (
+      <a href={to}>{children}</a>
+    );
+  }
 }
