@@ -6,17 +6,12 @@ import compression from 'compression';
 import cookieSession from 'cookie-session';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { Provider } from 'react-redux'
 
 import './globals';
 import { serveClientJs, serveCss } from './dev-middleware';
-import apiRouter from './api';
-import buildStore from '../app/store';
-import buildRouter from '../app/router';
-import Html from './components/html';
-import AppComp from '../app/components/app';
+import apiRouter from './api/';
+import appRouter from './app-router';
 import ErrorComp from './components/error';
-import * as routingAx from '../app/actions/routing';
 
 
 
@@ -39,36 +34,7 @@ if (app.settings.env === 'development') {
 
 // routers
 app.use('/api', apiRouter);
-
-// app routes
-// TODO: move into separate file
-app.get('*', (req, res, next) => {
-
-  const store = buildStore();
-  const router = buildRouter(store);
-
-  // delegate to pouter
-  router.route(req.url, (location, data, redirect, error) => {
-    if (error) return next(error);
-    if (redirect) return res.redirect(redirect);
-    if (data) {
-      store.dispatch(routingAx.enterRoute(location, data.page));
-      const comp = (
-        <Html store={store}>
-          <Provider store={store}>
-            <AppComp />
-          </Provider>
-        </Html>
-      );
-      const html = renderToStaticMarkup(comp);
-      return res.send(`<!DOCTYPE html>\n${html}`);
-    }
-
-    // if there's no data, redirect, or error present, then no route was found
-    next();
-  });
-
-});
+app.get('*', appRouter);
 
 // catch 404 and pass to error handler
 app.use((req, res, next) => {
