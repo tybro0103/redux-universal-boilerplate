@@ -1,51 +1,35 @@
 import React from 'react';
 import { render } from 'react-dom';
-import createHistory from 'history/lib/createBrowserHistory';
 import { Provider } from 'react-redux';
 
 import './globals';
 import configureStore from '../app/configure-store';
 import buildRouter from '../app/router';
+import history from '../app/history';
 import apiClient from '../app/api-client';
-import AppComp from '../app/components/app';
-
-
+import * as routingAx from '../app/actions/routing';
+import App from '../app/components/app';
 
 const store = configureStore();
 const router = buildRouter(store);
-const history = createHistory();
 
 
 
 // start listening for route changes
 router.startRouting(history, (location, data, redirect, error) => {
-  console.log('===== ROUTE! ', location);
-
-  if (error) {
-    // TODO: handle errors
-    console.log('===== DONE ERROR', error);
-  }
-
-  else if (redirect) {
-    // TODO: handle redirects
-    console.log('===== DONE REDIRECT', redirect);
-  }
-
-  else if (data) {
-    console.log('===== SUCCESS', data);
-  }
-  
-  else {
-    console.log('===== DONE NOT FOUND');
-  }
-
+  if (error) return console.error(error);
+  if (redirect) return history.replace(redirect);
+  if (data) return store.dispatch(routingAx.enterRoute(location, data.page));
+  // not found
+  console.error('ROUTE NOT FOUND');
+  store.dispatch(routingAx.enterRoute(location));
 });
 
 
 
-// client takes over by re-rendering
+// client takes over by doing initial render
 const appRootEl = document.getElementById('app-root');
-const component = <Provider store={store}><AppComp /></Provider>;
+const component = <Provider store={store}><App /></Provider>;
 render(component, appRootEl);
 
 

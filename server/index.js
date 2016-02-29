@@ -16,6 +16,7 @@ import buildRouter from '../app/router';
 import Html from './components/html';
 import AppComp from '../app/components/app';
 import ErrorComp from './components/error';
+import * as routingAx from '../app/actions/routing';
 
 
 
@@ -48,11 +49,10 @@ app.get('*', (req, res, next) => {
 
   // delegate to pouter
   router.route(req.url, (location, data, redirect, error) => {
-    console.log('===== ROUTE! ', location);
-
     if (error) return next(error);
     if (redirect) return res.redirect(redirect);
     if (data) {
+      store.dispatch(routingAx.enterRoute(location, data.page));
       const comp = (
         <Html store={store}>
           <Provider store={store}>

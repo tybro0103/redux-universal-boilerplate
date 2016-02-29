@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import { Link } from 'react-router';
 
 import * as pageSlx from '../../selectors/pages/planets-index';
+import Link from '../common/routing/link';
+
 
 
 let selector = createSelector(

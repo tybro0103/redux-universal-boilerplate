@@ -1,9 +1,21 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 
+import * as routingSlx from '../selectors/routing';
+import Home from './pages/home';
+import People from './pages/people';
+import PlanetsIndex from './pages/planets-index';
+import PlanetProfile from './pages/planet-profile';
+import Link from './common/routing/link';
+
+const propsMap = createSelector(routingSlx.page, page => ({page}));
+
+@connect(propsMap)
 export default class App extends Component {
 
   static propTypes = {
-    children: PropTypes.element.isRequired
+    page: PropTypes.string
   };
 
 
@@ -11,6 +23,16 @@ export default class App extends Component {
   /*
    * RENDERING
    */
+
+  renderPage() {
+    const {page} = this.props;
+    return {
+      'home': <Home />,
+      'people': <People />,
+      'planets-index': <PlanetsIndex />,
+      'planet-profile': <PlanetProfile />
+    }[page];
+  }
 
   render() {
     return (
@@ -20,24 +42,13 @@ export default class App extends Component {
           <li><Link to="/">Home</Link></li>
           <li><Link to="/people">People</Link></li>
           <li><Link to="/planets">Planets</Link></li>
+          <li><Link to="/foo">Foo &gt; Home</Link></li>
         </ul>
-        <div className="route-component">
-          {this.props.children}
+        <div className="page-con">
+          {this.renderPage()}
         </div>
       </div>
     );
   }
 
-}
-
-
-
-// TODO: make one of these that works with history
-class Link extends Component {
-  render() {
-    const {to, children} = this.props;
-    return (
-      <a href={to}>{children}</a>
-    );
-  }
 }
