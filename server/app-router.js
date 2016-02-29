@@ -43,8 +43,10 @@ export default function(req, res, next) {
 
 
 function buildComp(store) {
+  const serverState = store.getState();
+  
   return (
-    <Html store={store}>
+    <Html serverState={serverState}>
       <Provider store={store}>
         <App />
       </Provider>

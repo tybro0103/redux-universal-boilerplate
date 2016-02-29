@@ -6,7 +6,7 @@ export default class Html extends Component {
 
   static propTypes = {
     children: PropTypes.element.isRequired,
-    store: PropTypes.object.isRequired
+    serverState: PropTypes.object.isRequired
   };
 
 
@@ -16,8 +16,8 @@ export default class Html extends Component {
    */
 
   render() {
-    const {children, store} = this.props;
-    const serializedState = serialize(store.getState());
+    const {children, serverState} = this.props;
+    const serializedState = serialize(serverState);
     const stateHtml = `window.SERVER_STATE=${serializedState};`;
     const compHtml = renderToString(children);
 
