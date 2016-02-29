@@ -3,14 +3,14 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
 import './globals';
-import configureStore from '../app/configure-store';
+import buildStore from '../app/store';
 import buildRouter from '../app/router';
 import history from '../app/history';
 import apiClient from '../app/api-client';
 import * as routingAx from '../app/actions/routing';
 import App from '../app/components/app';
 
-const store = configureStore();
+const store = buildStore();
 const router = buildRouter(store);
 
 

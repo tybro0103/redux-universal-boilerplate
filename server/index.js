@@ -11,7 +11,7 @@ import { Provider } from 'react-redux'
 import './globals';
 import { serveClientJs, serveCss } from './dev-middleware';
 import apiRouter from './api';
-import configureStore from '../app/configure-store';
+import buildStore from '../app/store';
 import buildRouter from '../app/router';
 import Html from './components/html';
 import AppComp from '../app/components/app';
@@ -44,7 +44,7 @@ app.use('/api', apiRouter);
 // TODO: move into separate file
 app.get('*', (req, res, next) => {
 
-  const store = configureStore();
+  const store = buildStore();
   const router = buildRouter(store);
 
   // delegate to pouter
