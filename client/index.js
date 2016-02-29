@@ -10,7 +10,8 @@ import apiClient from '../app/api-client';
 import * as routingAx from '../app/actions/routing';
 import App from '../app/components/app';
 
-const store = buildStore();
+const initialState = window.SERVER_STATE;
+const store = buildStore(initialState);
 const router = buildRouter(store);
 
 

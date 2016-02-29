@@ -16,9 +16,10 @@ export default class Html extends Component {
    */
 
   render() {
-    let {children, store} = this.props;
-    let __html = renderToString(children);
-    let __data = serialize(store.getState());
+    const {children, store} = this.props;
+    const serializedState = serialize(store.getState());
+    const stateHtml = `window.SERVER_STATE=${serializedState};`;
+    const compHtml = renderToString(children);
 
     return (
       <html>
@@ -28,8 +29,8 @@ export default class Html extends Component {
           <link rel="stylesheet" href="/app.css" />
         </head>
         <body>
-          <div id="app-root" dangerouslySetInnerHTML={{ __html }} />
-          <script dangerouslySetInnerHTML={{__html: `window.__data=${__data};`}} />
+          <div id="app-root" dangerouslySetInnerHTML={{__html: compHtml}} />
+          <script dangerouslySetInnerHTML={{__html: stateHtml}} />
           <script src="/app.js" />
         </body>
       </html>
