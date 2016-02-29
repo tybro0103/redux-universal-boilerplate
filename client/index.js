@@ -22,7 +22,7 @@ router.startRouting(history, (location, data, redirect, error) => {
   if (redirect) return history.replace(redirect);
   if (data) return store.dispatch(routingAx.enterRoute(location, data.page));
   // not found
-  console.error('ROUTE NOT FOUND');
+  console.error('Route not found.');
   store.dispatch(routingAx.enterRoute(location));
 });
 
