@@ -5,6 +5,7 @@
 Main goals of this project:
 
   + Serve as boilerplate for universal apps using React+Redux.
+  + Serve as example usage of Pouter.
   + Develop some organization and conventions for such an app - particularly with the Redux parts and the tools involved.
   + Reduce the convoluted-ness that is typical of of the stack. Keep modules small and single-purpose. Keep the code easy to follow.
 
@@ -14,7 +15,7 @@ Stack:
 
   + ES6/7 via Babel
   + Node & Express
-  + React Router
+  + [Pouter](https://github.com/tybro0103/pouter)
   + React
   + Redux, React-Redux, Reselect, Redux-Promise-Middleware
   + Sass
@@ -37,9 +38,7 @@ open http://localhost:3069/
 ## Roadmap
 
   + better actions structure
-  + better routing
   + authentication
-  + explore react router alernatives
 
 
 
@@ -200,6 +199,6 @@ pending...
 
 ### Routers
 
-TBD...
+pending...
 
 
