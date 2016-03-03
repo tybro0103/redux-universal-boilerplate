@@ -2,9 +2,12 @@ import * as peopleAx from '../actions/people';
 
 
 
-export function index(done, location, {store}) {
-  const axPayload = store.dispatch(peopleAx.loadPageIndex()).payload;
-  axPayload.promise
-    .then(() => done.ok({page: 'people'}))
-    .catch(error => done.error(error));
+export function index(done, location, {store}, preRouted) {
+  const fetchPromise = preRouted
+    ? Promise.resolve()
+    : store.dispatch(peopleAx.loadPageIndex()).payload.promise;
+
+  fetchPromise
+    .then(() => done({page: 'people'}))
+    .catch(error => done({error}));
 };

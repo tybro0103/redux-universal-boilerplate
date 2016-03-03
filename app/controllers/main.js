@@ -1,8 +1,8 @@
 
 export function home(done, location, {store}) {
-  done.ok({page: 'home'});
+  done({page: 'home'});
 };
 
 export function foo(done, location, {store}) {
-  done.redirect('/');
+  done({redirect: '/'});
 };
