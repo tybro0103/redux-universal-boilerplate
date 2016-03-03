@@ -1,9 +1,9 @@
 import { Router } from 'pouter';
 // import { Router } from '../../pouter/src/';
 
-import * as main from './controllers/main';
-import * as people from './controllers/people';
-import * as planets from './controllers/planets';
+import * as main from './route-handlers/main';
+import * as people from './route-handlers/people';
+import * as planets from './route-handlers/planets';
 
 
 
