@@ -21,12 +21,13 @@ export default class CurrentPage extends Component {
 
   render() {
     const {page} = this.props;
-    return {
+    const pageComp = {
       'home': <Home />,
       'people': <People />,
       'planets-index': <PlanetsIndex />,
       'planet-profile': <PlanetProfile />
     }[page];
+    return pageComp || null;
   }
 
 }
