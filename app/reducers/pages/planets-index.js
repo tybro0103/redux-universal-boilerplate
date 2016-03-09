@@ -1,5 +1,5 @@
 
-let initialState = {
+const initialState = {
   planetIds: [],
   isLoaded: false
 };

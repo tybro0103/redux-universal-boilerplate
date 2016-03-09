@@ -7,7 +7,7 @@ import Link from '../common/routing/link';
 
 
 
-let selector = createSelector(
+const selector = createSelector(
   pageSlx.planets,
   planets => ({planets})
 );
@@ -16,7 +16,7 @@ let selector = createSelector(
 export default class PlanetsIndex extends Component {
 
   render() {
-    let {planets} = this.props;
+    const {planets} = this.props;
 
     return (
       <div>

@@ -4,7 +4,7 @@ import browserifyInc  from 'browserify-incremental';
 import sassMiddleware from 'node-sass-middleware';
 import bourbon from 'node-bourbon';
 
-let projectRoot = path.join(__dirname, '../');
+const projectRoot = path.join(__dirname, '../');
 
 
 
@@ -16,10 +16,10 @@ let projectRoot = path.join(__dirname, '../');
 
 export function serveClientJs(req, res) {
   // browserify incremental cache file
-  let bIncCacheFile = path.join(projectRoot, 'tmp/browserify-inc-cache.json');
+  const bIncCacheFile = path.join(projectRoot, 'tmp/browserify-inc-cache.json');
   // client javascript entry point file
-  let jsEntryFile = path.join(projectRoot, 'client/index.js');
-  let bOpts = {
+  const jsEntryFile = path.join(projectRoot, 'client/index.js');
+  const bOpts = {
     ...browserifyInc.args,
     debug: true,
     insertGlobals: true,
@@ -27,7 +27,7 @@ export function serveClientJs(req, res) {
     noParse: [], // add libs like 'moment', 'lodash', 'jquery', etc
     extensions: ['.js', '.jsx']
   };
-  let b = browserify(jsEntryFile, bOpts);
+  const b = browserify(jsEntryFile, bOpts);
   // use b-inc
   browserifyInc(b, {cacheFile: bIncCacheFile});
   // send the browserified output as response
@@ -46,9 +46,9 @@ export function serveClientJs(req, res) {
 
 // memoized sass middleware getter
 let memSassMiddleware;
-let getSassMiddleware = function() {
+const getSassMiddleware = function() {
   if (memSassMiddleware == null) {
-    let sassOpts = {
+    const sassOpts = {
       src: path.join(projectRoot, 'stylesheets'),
       includePaths: bourbon.includePaths,
       response: true,
@@ -60,6 +60,6 @@ let getSassMiddleware = function() {
 };
 
 export function serveCss(req, res, next) {
-  let hackedReq = {...req, url: '/app.css'}; // forces sassMiddleware to use app.scss, despite the real url
+  const hackedReq = {...req, url: '/app.css'}; // forces sassMiddleware to use app.scss, despite the real url
   return getSassMiddleware()(hackedReq, res, next);
 };

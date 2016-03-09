@@ -1,5 +1,5 @@
 
-let initialState = {
+const initialState = {
   personIds: [],
   selectedPersonId: null
 };

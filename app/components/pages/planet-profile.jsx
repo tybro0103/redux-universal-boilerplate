@@ -6,7 +6,7 @@ import { map } from 'lodash';
 import * as pageSlx from '../../selectors/pages/planet-profile';
 
 
-let selector = createSelector(
+const selector = createSelector(
   pageSlx.planet,
   planet => ({planet})
 );
@@ -15,7 +15,7 @@ let selector = createSelector(
 export default class PlanetsShow extends Component {
 
   render() {
-    let planet = this.props.planet;
+    const planet = this.props.planet;
 
     return (
       <div>

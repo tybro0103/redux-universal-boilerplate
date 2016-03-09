@@ -15,8 +15,8 @@ import ErrorComp from './components/error';
 
 
 
-let projectRoot = path.join(__dirname, '../');
-let app = express();
+const projectRoot = path.join(__dirname, '../');
+const app = express();
 
 // middleware
 app.use(bodyParser.json());
@@ -38,7 +38,7 @@ app.get('*', appRouter);
 
 // catch 404 and pass to error handler
 app.use((req, res, next) => {
-  let error = new Error('Not Found');
+  const error = new Error('Not Found');
   error.status = 404;
   next(error);
 });
@@ -46,8 +46,8 @@ app.use((req, res, next) => {
 // error handler
 app.use((error, req, res, next) => {
   console.error(error.stack);
-  let comp = <ErrorComp error={error} />;
-  let html = renderToStaticMarkup(comp);
+  const comp = <ErrorComp error={error} />;
+  const html = renderToStaticMarkup(comp);
   res.status(error.status || 500).send(`<!DOCTYPE html>\n${html}`);
 });
 

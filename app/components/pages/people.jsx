@@ -6,7 +6,7 @@ import * as pageSlx from '../../selectors/pages/people';
 import * as peopleAx from '../../actions/people';
 
 
-let selector = createSelector(
+const selector = createSelector(
   pageSlx.people,
   pageSlx.selectedPerson,
   (people, selectedPerson) => (
@@ -33,7 +33,7 @@ export default class PeopleIndex extends Component {
    */
 
   render() {
-    let {people, selectedPerson} = this.props;
+    const {people, selectedPerson} = this.props;
 
     return (
       <div>

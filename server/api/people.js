@@ -5,13 +5,13 @@ import swapi from '../services/swapi';
 
 
 
-let router = express.Router({ mergeParams: true });
+const router = express.Router({ mergeParams: true });
 
 router.get('/', (req, res) => {
   swapi.get('/people')
     .then(response => response.data.results)
     .then(people => _.map(people, person => {
-      let id = parseInt(person.url.split('/people/')[1])
+      const id = parseInt(person.url.split('/people/')[1])
       return {...person, id};
     }))
     .then(people => res.send(people))
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  let persontId = req.params.id;
+  const persontId = req.params.id;
   swapi.get(`/people/${persontId}`)
     .then(response => response.data)
     .then(person => ({...person, id: persontId}))

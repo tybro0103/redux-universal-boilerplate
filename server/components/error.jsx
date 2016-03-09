@@ -13,9 +13,9 @@ export default class ErrorComp extends Component {
    */
 
   render() {
-    let {error} = this.props;
-    let json = JSON.stringify(error, null, 2);
-    let dump = `${json}\n\n${error.stack}`;
+    const {error} = this.props;
+    const json = JSON.stringify(error, null, 2);
+    const dump = `${json}\n\n${error.stack}`;
 
     return (
       <div className="error">
