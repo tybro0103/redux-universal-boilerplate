@@ -7,6 +7,7 @@ import buildRouter from '../app/router';
 import Html from './components/html';
 import App from '../app/components/app';
 import * as routingAx from '../app/actions/routing';
+import * as authAx from '../app/actions/auth';
 
 
 
@@ -14,6 +15,10 @@ import * as routingAx from '../app/actions/routing';
 export default function(req, res, next) {
   const store = buildStore();
   const router = buildRouter(store);
+  const signedIn = req.session.signedIn || false;
+
+  // transfer auth status from session to store
+  store.dispatch(authAx.storeSessionStatus(signedIn));
 
   // delegate to pouter
   router.route(req.url, (location, data, redirect, error) => {
