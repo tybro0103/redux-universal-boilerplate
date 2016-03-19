@@ -14,13 +14,10 @@ export default function(state=initialState, action) {
   switch(action.type) {
 
     case 'ROUTING_ENTER_ROUTE':
-      let {page, location} = action;
-      // ensure page key will be there even if value was undefined
-      if (!page) page = null;
-      //
+      const {page, location} = action;
       return {
         ...state,
-        page,
+        page: (page || state.page),
         location
       };
 

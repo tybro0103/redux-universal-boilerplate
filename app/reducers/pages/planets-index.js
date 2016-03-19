@@ -1,17 +1,15 @@
 
 const initialState = {
-  planetIds: [],
-  isLoaded: false
+  planetIds: []
 };
 
 export default function(state=initialState, action) {
   switch(action.type) {
 
-    case 'LOAD_PAGE_PLANETS_INDEX_FULFILLED':
+    case 'LOAD_PAGE_PLANETS_INDEX_RESOLVED':
       return {
         ...state,
-        planetIds: action.payload.map(planet => planet.id),
-        isLoaded: true
+        planetIds: action.result.map(planet => planet.id)
       };
 
     default:

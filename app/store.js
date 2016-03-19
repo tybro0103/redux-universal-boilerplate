@@ -1,9 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import promiseMiddleware from 'redux-promise-middleware';
 import createLogger from 'redux-logger';
+
+import promiseMiddleware from './actions/middlewares/promise';
 import rootReducer from './reducers';
 
-const middleware = [promiseMiddleware()];
+const middleware = [promiseMiddleware];
 
 // TODO: only do this in dev
 if (__IS_CLIENT__) {

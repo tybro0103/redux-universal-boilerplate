@@ -17,7 +17,7 @@ Stack:
   + Node & Express
   + [Pouter](https://github.com/tybro0103/pouter)
   + React
-  + Redux, React-Redux, Reselect, Redux-Promise-Middleware
+  + Redux, React-Redux, Reselect
   + Sass
   + Browserify
 

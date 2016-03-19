@@ -3,11 +3,9 @@ import * as planetsAx from '../actions/planets';
 
 
 export function index(done, location, {store}, preRouted) {
-  const fetchPromise = preRouted
-    ? Promise.resolve()
-    : store.dispatch(planetsAx.loadPageIndex()).payload.promise;
+  if (preRouted) return done();
   
-  fetchPromise
+  store.dispatch(planetsAx.loadPageIndex())
     .then(() => done({page: 'planets-index'}))
     .catch(error => done({error}));
 };
@@ -15,11 +13,9 @@ export function index(done, location, {store}, preRouted) {
 
 
 export function profile(done, {params: {planetId}}, {store}, preRouted) {
-  const fetchPromise = preRouted
-    ? Promise.resolve()
-    : store.dispatch(planetsAx.loadPageShow(planetId)).payload.promise;
+  if (preRouted) return done();
 
-  fetchPromise
+  store.dispatch(planetsAx.loadPageShow(planetId))
     .then(() => done({page: 'planet-profile'}))
     .catch(error => done({error}));
 };
