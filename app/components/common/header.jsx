@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import * as appSlx from '../../selectors/app';
-import * as authAx from '../../actions/auth';
+import * as sessionsAx from '../../actions/sessions';
 import Link from './routing/link';
 
 
@@ -25,7 +25,7 @@ export default class Header extends Component {
 
   onLogoutClick(e) {
     e.preventDefault();
-    this.props.dispatch(authAx.logout());
+    this.props.dispatch(sessionsAx.logout());
   }
 
 

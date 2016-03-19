@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import * as authAx from '../../actions/auth';
+import * as sessionsAx from '../../actions/sessions';
 
 
 
@@ -16,7 +16,7 @@ export default class Login extends Component {
 
   onLoginClick() {
     const password = this.refs.passwordInput.value;
-    this.props.dispatch(authAx.login(password));
+    this.props.dispatch(sessionsAx.login(password));
   }
 
 

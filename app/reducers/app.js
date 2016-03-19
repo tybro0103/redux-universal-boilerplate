@@ -6,19 +6,19 @@ const initialState = {
 export default function(state=initialState, action) {
   switch(action.type) {
 
-    case 'AUTH_LOGIN_FULFILLED':
+    case 'SESSIONS_LOGIN_RESOLVED':
       return {
         ...state,
         signedIn: true
       };
 
-    case 'AUTH_LOGOUT_FULFILLED':
+    case 'SESSIONS_LOGOUT_RESOLVED':
       return {
         ...state,
         signedIn: false
       };
 
-    case 'AUTH_STORE_SESSION_STATUS':
+    case 'SESSIONS_STORE_SESSION_STATUS':
       return {
         ...state,
         signedIn: action.signedIn

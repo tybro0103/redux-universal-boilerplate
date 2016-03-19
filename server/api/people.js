@@ -8,6 +8,10 @@ import swapi from '../services/swapi';
 const router = express.Router({ mergeParams: true });
 
 router.get('/', (req, res) => {
+  // require auth
+  const signedIn = req.session.signedIn;
+  if (!signedIn) return res.status(401).send({message: 'login required'});
+  //
   swapi.get('/people')
     .then(response => response.data.results)
     .then(people => _.map(people, person => {
