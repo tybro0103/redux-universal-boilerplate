@@ -14,7 +14,8 @@ export default class Login extends Component {
    *  UI EVENTS
    */
 
-  onLoginClick() {
+  onLoginSubmit(e) {
+    e.preventDefault();
     const password = this.refs.passwordInput.value;
     this.props.dispatch(sessionsAx.login(password));
   }
@@ -27,15 +28,15 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className="home">
+      <form className="home" onSubmit={this.onLoginSubmit.bind(this)}>
         <h2>Login</h2>
         <label htmlFor="password-input">Password</label>
         &nbsp;
         <input ref="passwordInput" id="password-input" type="password" />
         &nbsp;
-        <button onClick={this.onLoginClick.bind(this)}>Login</button>
+        <input type="submit" value="Login" />
         <p>The password is "taco".</p>
-      </div>
+      </form>
     );
   }
 

@@ -40,8 +40,13 @@ export default class Header extends Component {
     return (
       <div className="header">
         {signedIn
-          ? <a href="#" onClick={this.onLogoutClick.bind(this)}>Logout</a>
-          : <Link to="/login">Login</Link>
+          ?
+            <span>
+              Signed In &bull;&nbsp;
+              <a href="#" onClick={this.onLogoutClick.bind(this)}>Logout</a>
+            </span>
+          :
+            <Link to="/login">Login</Link>
         }
         <h1>Redux Universal Boilerplate</h1>
       </div>
