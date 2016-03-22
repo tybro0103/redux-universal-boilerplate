@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import history from '../../../history';
+import history from '../../history';
 
 
 

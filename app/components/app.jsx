@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import Header from './common/header';
-import Link from './common/routing/link';
-import CurrentPage from './common/routing/current-page';
+import Link from './routing/link';
+import CurrentPage from './routing/current-page';
 
 
 

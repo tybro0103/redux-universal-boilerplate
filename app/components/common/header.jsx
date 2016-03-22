@@ -4,7 +4,7 @@ import { createSelector } from 'reselect';
 
 import * as appSlx from '../../selectors/app';
 import * as sessionsAx from '../../actions/sessions';
-import Link from './routing/link';
+import Link from '../routing/link';
 
 
 

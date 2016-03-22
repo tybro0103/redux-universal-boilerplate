@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import * as pageSlx from '../../selectors/pages/planets-index';
-import Link from '../common/routing/link';
+import Link from '../routing/link';
 
 
 
