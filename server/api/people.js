@@ -9,7 +9,7 @@ const router = express.Router({ mergeParams: true });
 
 router.get('/', (req, res) => {
   // require auth
-  const signedIn = req.session.signedIn;
+  const signedIn = req.session.signedIn || req.get('X-Signed-In') === 'true';
   if (!signedIn) return res.status(401).send({message: 'login required'});
   //
   swapi.get('/people')

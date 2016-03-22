@@ -9,10 +9,10 @@ import * as planets from './route-handlers/planets';
 
 
 
-export default function buildRouter(store) {
+export default function buildRouter(store, signedIn) {
 
   const router = new Router();
-  router.setContext({store});
+  router.setContext({store, signedIn});
 
   router.use('/', main.home);
   router.use('/foo', main.foo);

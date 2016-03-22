@@ -2,8 +2,8 @@ import apiClient from '../api-client';
 
 export default {
 
-  load: () => {
-    return apiClient.get('/people')
+  load: (signedIn=false) => {
+    return apiClient.get('/people', {headers: {'X-Signed-In': signedIn}})
       .then(res => res.data);
   },
 

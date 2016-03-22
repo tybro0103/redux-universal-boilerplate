@@ -13,9 +13,9 @@ import * as sessionsAx from '../app/actions/sessions';
 
 // express middleware that delegates to pouter
 export default function(req, res, next) {
-  const store = buildStore();
-  const router = buildRouter(store);
   const signedIn = req.session.signedIn || false;
+  const store = buildStore();
+  const router = buildRouter(store, signedIn);
 
   // transfer session status from session to store
   store.dispatch(sessionsAx.storeSessionStatus(signedIn));

@@ -1,9 +1,9 @@
 import peopleApi from '../api-wrappers/people';
 
-export function loadPageIndex() {
+export function loadPageIndex(signedIn) {
   return {
     type: 'LOAD_PAGE_PEOPLE_INDEX',
-    promise: peopleApi.load()
+    promise: peopleApi.load(signedIn)
   };
 };
 
