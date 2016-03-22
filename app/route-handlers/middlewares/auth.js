@@ -11,8 +11,7 @@ export default function auth(origHandler) {
     // build a new "hijacked" done callback that does the dirty work
     function hijackedDone(result={}) {
       const isAuthError = result.error && result.error.status === 401;
-      if (isAuthError) result = {redirect: '/login'};
-      finalDone(result);
+      finalDone(isAuthError ? {redirect: '/login'} : result);
     };
     // pass on to original route handler
     return origHandler(hijackedDone, ...args);
